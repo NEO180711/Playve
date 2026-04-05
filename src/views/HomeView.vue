@@ -53,6 +53,33 @@ const games = [
         </RouterLink>
       </li>
     </ul>
+
+    <section class="home__about" aria-labelledby="home-about-h">
+      <h2 id="home-about-h" class="home__about-title">Playve는 어떤 서비스인가요?</h2>
+      <p class="home__about-text">
+        <strong>Playve</strong>는 친구·동아리·수업 등에서 바로 쓸 수 있는 <strong>무료 미니게임·추첨 도구</strong>입니다.
+        사다리타기로 역할을 나누고, 원판(룰렛)으로 당첨 항목을 정하고, 제비뽑기·랜덤 숫자·동전 던지기·이름 추첨으로
+        공정하게 결과를 정할 수 있습니다. 별도 앱 설치 없이 휴대폰·PC 브라우저에서 동작하며, 개인정보를 서버에 올리지
+        않는 방식으로 게임을 즐기도록 설계했습니다. 사이트 운영을 위해 제3자 광고가 표시될 수 있으며, 자세한 내용은
+        <RouterLink to="/privacy">개인정보처리방침</RouterLink>에서 확인할 수 있습니다.
+      </p>
+    </section>
+
+    <section class="home__quality" aria-labelledby="home-quality-h">
+      <h2 id="home-quality-h" class="home__quality-title">사용자를 위한 운영 원칙</h2>
+      <p class="home__quality-lead">
+        유용한 설명·명확한 구조·투명한 운영을 지향합니다. 아래는 그에 맞춘 실천 사항입니다.
+      </p>
+      <ul class="home__quality-list">
+        <li><strong>유용한 설명</strong> — 각 게임마다 도움말(?)과 안내 문구로 이용 방법을 분명히 적습니다.</li>
+        <li><strong>명확한 구조</strong> — 홈, 게임별 페이지, 소개·FAQ·약관·개인정보·문의로 내비게이션을 나눕니다.</li>
+        <li><strong>투명성</strong> —
+          <RouterLink to="/about">사이트 소개</RouterLink>,
+          <RouterLink to="/contact">문의</RouterLink>,
+          <RouterLink to="/terms">이용약관</RouterLink>에서 운영 목적과 연락 경로를 안내합니다.</li>
+        <li><strong>정책 준수</strong> — 광고·쿠키는 동의 안내와 개인정보처리방침에 따라 처리합니다.</li>
+      </ul>
+    </section>
   </div>
 </template>
 
@@ -150,6 +177,77 @@ const games = [
   font-size: 0.88rem;
   font-weight: 700;
   color: var(--point);
+}
+
+.home__about {
+  margin-top: clamp(2rem, 5vw, 2.75rem);
+  padding: clamp(1.1rem, 3vw, 1.35rem) clamp(1rem, 3vw, 1.25rem);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+}
+
+.home__about-title {
+  margin: 0 0 0.65rem;
+  font-size: clamp(1rem, 2.8vw, 1.15rem);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.home__about-text {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.home__about-text :deep(a) {
+  color: var(--secondary);
+  font-weight: 600;
+}
+
+.home__quality {
+  margin-top: clamp(1.5rem, 4vw, 2rem);
+  padding: clamp(1.1rem, 3vw, 1.35rem) clamp(1rem, 3vw, 1.25rem);
+  background: linear-gradient(135deg, rgba(61, 92, 255, 0.06) 0%, rgba(255, 92, 0, 0.05) 100%);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+}
+
+.home__quality-title {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1rem, 2.8vw, 1.12rem);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.home__quality-lead {
+  margin: 0 0 0.75rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.home__quality-lead a {
+  color: var(--secondary);
+  font-weight: 700;
+}
+
+.home__quality-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.home__quality-list li {
+  margin-bottom: 0.45rem;
+}
+
+.home__quality-list :deep(a) {
+  color: var(--secondary);
+  font-weight: 600;
 }
 
 </style>

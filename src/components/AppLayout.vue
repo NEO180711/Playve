@@ -1,9 +1,17 @@
 <script setup lang="ts">
 import { RouterLink, useRoute } from "vue-router";
-import { computed } from "vue";
+import { computed, inject } from "vue";
+import AdResponsiveUnit from "./AdResponsiveUnit.vue";
+import { AD_CONSENT_KEY } from "../lib/consent";
 
 const route = useRoute();
 const path = computed(() => route.path);
+
+const adConsent = inject(AD_CONSENT_KEY)!;
+const showAds = computed(() => adConsent?.value === "granted");
+
+const mainAdSlot = import.meta.env.VITE_AD_SLOT_MAIN?.trim() || "";
+const footerAdSlot = import.meta.env.VITE_AD_SLOT_FOOTER?.trim() || "";
 
 const nav = [
   { to: "/", label: "홈" },
@@ -18,6 +26,7 @@ const nav = [
 
 <template>
   <div class="layout">
+    <a href="#main-content" class="skip-link">본문으로 바로가기</a>
     <header class="layout__header">
       <RouterLink to="/" class="layout__brand">
         <span class="layout__logo">P</span>
@@ -35,9 +44,25 @@ const nav = [
         </RouterLink>
       </nav>
     </header>
-    <main class="layout__main">
+    <main id="main-content" class="layout__main" tabindex="-1">
+      <AdResponsiveUnit v-if="showAds && mainAdSlot" :ad-slot="mainAdSlot" min-height="100px" />
       <slot />
+      <AdResponsiveUnit v-if="showAds && footerAdSlot" :ad-slot="footerAdSlot" min-height="120px" />
     </main>
+    <footer class="layout__footer">
+      <nav class="layout__footer-nav" aria-label="사이트 정보 및 정책">
+        <RouterLink to="/about" class="layout__footer-link">소개</RouterLink>
+        <span class="layout__footer-dot" aria-hidden="true">·</span>
+        <RouterLink to="/faq" class="layout__footer-link">FAQ</RouterLink>
+        <span class="layout__footer-dot" aria-hidden="true">·</span>
+        <RouterLink to="/terms" class="layout__footer-link">이용약관</RouterLink>
+        <span class="layout__footer-dot" aria-hidden="true">·</span>
+        <RouterLink to="/privacy" class="layout__footer-link">개인정보처리방침</RouterLink>
+        <span class="layout__footer-dot" aria-hidden="true">·</span>
+        <RouterLink to="/contact" class="layout__footer-link">문의</RouterLink>
+      </nav>
+      <p class="layout__footer-copy">© Playve</p>
+    </footer>
   </div>
 </template>
 
@@ -125,10 +150,49 @@ const nav = [
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: clamp(1rem, 3vw, 1.5rem) clamp(0.75rem, 4vw, 1.25rem)
-    max(3rem, env(safe-area-inset-bottom));
+  padding: clamp(1rem, 3vw, 1.5rem) clamp(0.75rem, 4vw, 1.25rem) clamp(1rem, 2vw, 1.25rem);
   padding-left: max(clamp(0.75rem, 4vw, 1.25rem), env(safe-area-inset-left));
   padding-right: max(clamp(0.75rem, 4vw, 1.25rem), env(safe-area-inset-right));
+}
+
+.layout__footer {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 clamp(0.75rem, 4vw, 1.25rem) max(2rem, env(safe-area-inset-bottom));
+  padding-left: max(clamp(0.75rem, 4vw, 1.25rem), env(safe-area-inset-left));
+  padding-right: max(clamp(0.75rem, 4vw, 1.25rem), env(safe-area-inset-right));
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.layout__footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 0.5rem;
+  margin: 0 0 0.5rem;
+}
+
+.layout__footer-link {
+  color: var(--secondary);
+  font-weight: 600;
+}
+
+.layout__footer-link:hover {
+  color: var(--point);
+}
+
+.layout__footer-dot {
+  opacity: 0.45;
+}
+
+.layout__footer-copy {
+  margin: 0;
+  opacity: 0.75;
+  font-size: 0.8rem;
 }
 
 @media (max-width: 768px) {

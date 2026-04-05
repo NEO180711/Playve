@@ -33,6 +33,98 @@ body {
   min-height: 100vh;
 }
 
+.skip-link {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link:focus {
+  position: fixed;
+  top: 0.65rem;
+  left: 0.65rem;
+  z-index: 500;
+  width: auto;
+  height: auto;
+  margin: 0;
+  clip: auto;
+  padding: 0.55rem 1rem;
+  background: var(--text);
+  color: #fff;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  font-size: 0.88rem;
+  box-shadow: var(--shadow);
+}
+
+#main-content:focus {
+  outline: none;
+}
+
+#main-content:focus-visible {
+  outline: 2px solid rgba(61, 92, 255, 0.4);
+  outline-offset: 2px;
+}
+
+.legal-body {
+  max-width: 42rem;
+  margin: 0 auto;
+  text-align: left;
+  line-height: 1.65;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.legal-body h2 {
+  margin: 1.75rem 0 0.5rem;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.legal-body p,
+.legal-body ul {
+  margin: 0 0 0.85rem;
+  color: var(--text-muted);
+}
+
+.legal-body ul {
+  padding-left: 1.25rem;
+}
+
+.legal-body code {
+  font-size: 0.88em;
+  background: rgba(242, 244, 247, 0.95);
+  padding: 0.1em 0.35em;
+  border-radius: 0.25rem;
+}
+
+.legal-body .faq-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legal-body .faq-list dt {
+  font-weight: 800;
+  color: var(--text);
+  margin: 1.25rem 0 0.4rem;
+}
+
+.legal-body .faq-list dt:first-child {
+  margin-top: 0;
+}
+
+.legal-body .faq-list dd {
+  margin: 0 0 0.5rem;
+  color: var(--text-muted);
+}
+
 a {
   color: var(--secondary);
   text-decoration: none;

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# VITE_SITE_URL을 설정해 빌드하면 dist/sitemap.xml이 생성됩니다.
+# 배포 후 robots.txt에 절대 URL로 한 줄 추가하는 것을 권장합니다.
+# 예: Sitemap: https://www.example.com/sitemap.xml
