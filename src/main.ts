@@ -1,9 +1,12 @@
 import { createApp } from "vue";
 import type { RouteLocationNormalized } from "vue-router";
+import { inject } from "@vercel/analytics";
 import App from "./App.vue";
 import router from "./router";
 import "./assets/main.css";
 import "./assets/game-onboarding.css";
+
+inject();
 
 const defaultTitle = "Playve — 미니게임 모음 · 사다리·룰렛·추첨";
 const defaultDescription =
