@@ -1,0 +1,219 @@
+/* 공통: 게임 안내 오버레이 + ? FAB + 설명서 모달 */
+
+.game-onboarding-page {
+  position: relative;
+  padding-bottom: max(4.5rem, calc(env(safe-area-inset-bottom, 0px) + 3.5rem));
+}
+
+.game-intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 240;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(1rem, env(safe-area-inset-top, 0px)) max(1rem, env(safe-area-inset-right, 0px))
+    max(1rem, env(safe-area-inset-bottom, 0px)) max(1rem, env(safe-area-inset-left, 0px));
+  background: rgba(26, 29, 36, 0.5);
+  backdrop-filter: blur(5px);
+  transition:
+    opacity 0.55s ease,
+    background-color 0.55s ease;
+}
+
+.game-intro-overlay--fade {
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(26, 29, 36, 0);
+  backdrop-filter: none;
+}
+
+.game-intro-card {
+  width: 100%;
+  max-width: 22rem;
+  padding: 1.35rem 1.25rem 1.15rem;
+  background: #fff;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  will-change: transform, opacity;
+}
+
+.game-intro-card__title {
+  margin: 0 0 0.65rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.game-intro-card__body .game-intro-lead {
+  margin: 0 0 0.85rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.game-intro-card__body .game-intro-list {
+  margin: 0 0 1.1rem;
+  padding-left: 1.15rem;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.game-intro-card__body .game-intro-list li {
+  margin-bottom: 0.4rem;
+}
+
+.game-intro-card__ok {
+  width: 100%;
+  min-height: 2.75rem;
+}
+
+.game-help-fab {
+  position: fixed;
+  right: max(1.25rem, env(safe-area-inset-right, 0px));
+  bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
+  z-index: 60;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--secondary);
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(61, 92, 255, 0.35);
+  touch-action: manipulation;
+}
+
+.game-help-fab--above-intro {
+  z-index: 245;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .game-help-fab:hover {
+    background: var(--point);
+    box-shadow: var(--shadow-orange);
+  }
+}
+
+.game-help-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(1rem, env(safe-area-inset-top, 0px)) max(1rem, env(safe-area-inset-right, 0px))
+    max(1rem, env(safe-area-inset-bottom, 0px)) max(1rem, env(safe-area-inset-left, 0px));
+  background: rgba(26, 29, 36, 0.45);
+  backdrop-filter: blur(4px);
+}
+
+/* 안내 오버레이(z-index)보다 위에 두어, 안내 중 ? 도움말이 가려지지 않게 함 */
+.game-help-backdrop--above-intro {
+  z-index: 250;
+}
+
+.game-help-modal {
+  position: relative;
+  width: 100%;
+  max-width: 26rem;
+  max-height: min(85dvh, 85vh, 36rem);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 1.35rem 1.25rem 1rem;
+  background: #fff;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.game-help-modal__close {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--card);
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.game-help-modal__close:hover {
+  background: var(--border);
+  color: var(--text);
+}
+
+.game-help-modal__title {
+  margin: 0 2rem 1rem 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.game-help-section {
+  margin-bottom: 1rem;
+}
+
+.game-help-section__h {
+  margin: 0 0 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--point);
+}
+
+.game-help-section__p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.game-help-section__p--tight {
+  margin-top: 0.5rem;
+}
+
+.game-help-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.game-help-list--unordered {
+  list-style: disc;
+}
+
+.game-help-list li {
+  margin-bottom: 0.35rem;
+}
+
+.game-help-modal__foot {
+  margin: 0.75rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.game-help-modal__foot kbd {
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--border);
+  background: var(--card);
+  font-size: 0.75rem;
+  font-family: inherit;
+}
