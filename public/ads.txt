@@ -1,2 +1,1 @@
-# 광고 판매자 승인·연동 시, 실제 값으로 교체해 한 줄로 유지하세요.
-# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+google.com, pub-9076263469821087, DIRECT, f08c47fec0942fa0
